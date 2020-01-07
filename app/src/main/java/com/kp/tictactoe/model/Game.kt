@@ -17,10 +17,16 @@ class Game(playerOne: String, playerTwo: String){
     }
 
     fun hasGameEnded(): Boolean {
+        if(isBoardFull())
+            return true
         return false
     }
 
     fun isBoardFull(): Boolean {
+        for (row in cells)
+            for (cell in row)
+                if (cell.isEmpty)
+                    return false
         return true
     }
 }

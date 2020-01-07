@@ -25,7 +25,7 @@ class GameTest {
     }
 
     @Test
-    fun `Given function should return true when game board is full`(){
-        Assert.assertTrue(game.isBoardFull())
+    fun `Given function should return false when game board is not full`(){
+        Assert.assertFalse(game.isBoardFull())
     }
 }
