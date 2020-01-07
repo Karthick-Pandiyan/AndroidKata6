@@ -15,4 +15,8 @@ class Game(playerOne: String, playerTwo: String){
     fun switchPlayer() {
         currentPlayer = if (currentPlayer === player1) player2 else player1
     }
+
+    fun hasGameEnded(): Boolean {
+        return false
+    }
 }

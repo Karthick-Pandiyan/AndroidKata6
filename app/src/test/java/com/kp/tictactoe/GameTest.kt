@@ -18,4 +18,9 @@ class GameTest {
         game.switchPlayer()
         Assert.assertEquals(game.player2.name, game.currentPlayer.name)
     }
+
+    @Test
+    fun `Given function should return false when game is not ended`(){
+        Assert.assertFalse(game.hasGameEnded())
+    }
 }
