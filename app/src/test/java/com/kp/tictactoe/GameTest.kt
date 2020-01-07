@@ -42,8 +42,7 @@ class GameTest {
         game.cells[0][0] = cell
         game.cells[0][1] = cell
         game.cells[0][2] = cell
-        val hasThreeSameHorizontalCells = hasThreeSameHorizontalCells()
-        Assert.assertTrue(hasThreeSameHorizontalCells)
+        Assert.assertTrue(game.hasThreeSameHorizontalCells())
     }
 
     @Test
@@ -53,8 +52,7 @@ class GameTest {
         game.cells[1][0] = cell
         game.cells[1][1] = cell
         game.cells[1][2] = cell
-        val hasThreeSameHorizontalCells = hasThreeSameHorizontalCells()
-        Assert.assertTrue(hasThreeSameHorizontalCells)
+        Assert.assertTrue(game.hasThreeSameHorizontalCells())
     }
 
     @Test
@@ -64,8 +62,7 @@ class GameTest {
         game.cells[2][0] = cell
         game.cells[2][1] = cell
         game.cells[2][2] = cell
-        val hasThreeSameHorizontalCells = hasThreeSameHorizontalCells()
-        Assert.assertTrue(hasThreeSameHorizontalCells)
+        Assert.assertTrue(game.hasThreeSameHorizontalCells())
     }
 
     @Test
@@ -76,8 +73,7 @@ class GameTest {
         game.cells[0][0] = cell
         game.cells[0][1] = cell
         game.cells[0][2] = anotherCell
-        val hasThreeSameHorizontalCells = hasThreeSameHorizontalCells()
-        Assert.assertFalse(hasThreeSameHorizontalCells)
+        Assert.assertFalse(game.hasThreeSameHorizontalCells())
     }
 
 }
