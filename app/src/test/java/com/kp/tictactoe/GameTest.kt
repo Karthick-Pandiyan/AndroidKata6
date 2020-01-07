@@ -28,4 +28,10 @@ class GameTest {
     fun `Given function should return false when game board is not full`(){
         Assert.assertFalse(game.isBoardFull())
     }
+
+    @Test
+    fun `Given function should return false when cells are not equal from areEqual()`(){
+        Assert.assertFalse(game.areEqual(game.cells[0][1], game.cells[0][2]))
+    }
+
 }
