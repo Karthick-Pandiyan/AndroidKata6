@@ -13,4 +13,9 @@ class PlayerTest {
     fun `Given function should return player name when value passed in Player constructor`(){
         Assert.assertEquals("Karthick", player1.name)
     }
+
+    @Test
+    fun `Given function should return player value when value passed in Player constructor`(){
+        Assert.assertEquals("o", player1.value)
+    }
 }
