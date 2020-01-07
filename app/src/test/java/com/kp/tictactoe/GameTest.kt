@@ -1,5 +1,6 @@
 package com.kp.tictactoe
 
+import com.kp.tictactoe.model.Cell
 import com.kp.tictactoe.model.Game
 import org.junit.Assert
 import org.junit.Test
@@ -32,6 +33,17 @@ class GameTest {
     @Test
     fun `Given function should return false when cells are not equal from areEqual()`(){
         Assert.assertFalse(game.areEqual(game.cells[0][1], game.cells[0][2]))
+    }
+
+    @Test
+    @Throws(Exception::class)
+    fun `Given function should return true if it has three same horizontal cells at Row1`() {
+        val cell = Cell(game.player1)
+        game.cells[0][0] = cell
+        game.cells[0][1] = cell
+        game.cells[0][2] = cell
+        val hasThreeSameHorizontalCells = hasThreeSameHorizontalCells()
+        Assert.assertTrue(hasThreeSameHorizontalCells)
     }
 
     fun hasThreeSameHorizontalCells(): Boolean {
