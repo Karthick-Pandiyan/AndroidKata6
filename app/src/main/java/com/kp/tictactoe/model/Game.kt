@@ -35,4 +35,8 @@ class Game(playerOne: String, playerTwo: String){
                     return false
         return true
     }
+
+    private fun areEqual(vararg cells: Cell): Boolean {
+        return true
+    }
 }
