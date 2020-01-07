@@ -12,4 +12,10 @@ class GameTest {
     fun `Given Game should return current player as player 1, when game starts on first time`(){
         Assert.assertEquals("Karthick", game.currentPlayer.name)
     }
+
+    @Test
+    fun `Given function should return player 2 when switch player function called if current player is player 1`(){
+        game.switchPlayer()
+        Assert.assertEquals("Pandiyan", game.currentPlayer.name)
+    }
 }
