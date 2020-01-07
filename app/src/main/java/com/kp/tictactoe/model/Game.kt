@@ -19,4 +19,8 @@ class Game(playerOne: String, playerTwo: String){
     fun hasGameEnded(): Boolean {
         return false
     }
+
+    fun isBoardFull(): Boolean {
+        return true
+    }
 }

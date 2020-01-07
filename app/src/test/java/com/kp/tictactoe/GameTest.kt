@@ -23,4 +23,9 @@ class GameTest {
     fun `Given function should return false when game is not ended`(){
         Assert.assertFalse(game.hasGameEnded())
     }
+
+    @Test
+    fun `Given function should return true when game board is full`(){
+        Assert.assertTrue(game.isBoardFull())
+    }
 }
