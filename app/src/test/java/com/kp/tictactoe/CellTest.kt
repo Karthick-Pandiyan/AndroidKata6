@@ -13,4 +13,11 @@ class CellTest {
         val cell = Cell(game.player1)
         Assert.assertFalse(cell.isEmpty)
     }
+
+    @Test
+    fun `Given function should return empty when player yet to start the game`(){
+        game.player1.value = ""
+        val cell = Cell(game.player1)
+        Assert.assertTrue(cell.isEmpty)
+    }
 }
