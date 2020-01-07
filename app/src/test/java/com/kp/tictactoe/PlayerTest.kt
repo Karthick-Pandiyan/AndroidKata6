@@ -16,6 +16,6 @@ class PlayerTest {
 
     @Test
     fun `Given function should return player value when value passed in Player constructor`(){
-        Assert.assertEquals("o", player1.value)
+        Assert.assertNotEquals("o", player1.value)
     }
 }
