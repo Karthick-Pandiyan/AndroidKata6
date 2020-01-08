@@ -185,7 +185,7 @@ class GameTest {
         game.cells[0][0] = cell
         game.cells[1][1] = cell
         game.cells[2][2] = cell
-        game.winner.value?.equals(game.player1)?.let { Assert.assertTrue(it) }
+        game.hasGameEnded()
+        game.winner.value?.equals(game.player2)?.let { Assert.assertTrue(it) }
     }
-
 }
