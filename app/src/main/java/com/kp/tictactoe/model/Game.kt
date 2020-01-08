@@ -26,7 +26,8 @@ class Game(playerOne: String, playerTwo: String){
         }
 
         if(isBoardFull()) {
-            winner.value = null
+            currentPlayer.name = ""
+            winner.postValue(currentPlayer)
             return true
         }
         return false
