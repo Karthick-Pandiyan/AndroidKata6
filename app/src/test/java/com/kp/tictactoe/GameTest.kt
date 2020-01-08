@@ -125,7 +125,7 @@ class GameTest {
         game.cells[0][2] = cell
         game.cells[1][1] = cell
         game.cells[2][0] = anotherCell
-        Assert.assertFalse(hasThreeSameDiagonalCells())
+        Assert.assertFalse(game.hasThreeSameDiagonalCells())
     }
 
     @Test
@@ -135,7 +135,7 @@ class GameTest {
         game.cells[0][0] = cell
         game.cells[1][1] = cell
         game.cells[2][2] = cell
-        Assert.assertTrue(hasThreeSameDiagonalCells())
+        Assert.assertTrue(game.hasThreeSameDiagonalCells())
     }
 
     @Test
@@ -145,14 +145,6 @@ class GameTest {
         game.cells[0][2] = cell
         game.cells[1][1] = cell
         game.cells[2][0] = cell
-        Assert.assertTrue(hasThreeSameDiagonalCells())
-    }
-
-    fun hasThreeSameDiagonalCells(): Boolean {
-        for (i in 0 until 3)
-            if (game.areEqual(game.cells[0][0], game.cells[1][1], game.cells[2][2])||
-                game.areEqual(game.cells[0][2], game.cells[1][1], game.cells[2][0]))
-                return true
-        return false
+        Assert.assertTrue(game.hasThreeSameDiagonalCells())
     }
 }
