@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 
 class Game(playerOne: String, playerTwo: String){
 
+    var winner: MutableLiveData<Player> = MutableLiveData()
     private val BOARD_SIZE = 3
     val player1 =  Player(playerOne, "x")
     val player2 = Player(playerTwo, "o")
@@ -13,8 +14,6 @@ class Game(playerOne: String, playerTwo: String){
             Cell(null)
         }
     }
-    var winner: MutableLiveData<Player> = MutableLiveData()
-
 
     fun switchPlayer() {
         currentPlayer = if (currentPlayer === player1) player2 else player1
@@ -22,7 +21,7 @@ class Game(playerOne: String, playerTwo: String){
 
     fun hasGameEnded(): Boolean {
         if(hasThreeSameHorizontalCells() || hasThreeSameVerticalCells() || hasThreeSameDiagonalCells()){
-            winner.value = currentPlayer
+            winner.postValue(currentPlayer)
             return true
         }
 
