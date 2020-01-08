@@ -157,4 +157,14 @@ class GameTest {
         game.cells[0][2] = cell
         Assert.assertTrue(game.hasGameEnded())
     }
+
+    @Test
+    @Throws(Exception::class)
+    fun `Given function should end the game if it has three same Vertical cells`() {
+        val cell = Cell(game.player1)
+        game.cells[0][0] = cell
+        game.cells[1][0] = cell
+        game.cells[2][0] = cell
+        Assert.assertTrue(game.hasGameEnded())
+    }
 }
