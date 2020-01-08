@@ -138,6 +138,15 @@ class GameTest {
         Assert.assertTrue(hasThreeSameDiagonalCells())
     }
 
+    @Test
+    @Throws(Exception::class)
+    fun `Given function should return true if it has three same Diagonal cells from Right`() {
+        val cell = Cell(game.player1)
+        game.cells[0][2] = cell
+        game.cells[1][1] = cell
+        game.cells[2][0] = cell
+        Assert.assertTrue(hasThreeSameDiagonalCells())
+    }
 
     fun hasThreeSameDiagonalCells(): Boolean {
         for (i in 0 until 3)
