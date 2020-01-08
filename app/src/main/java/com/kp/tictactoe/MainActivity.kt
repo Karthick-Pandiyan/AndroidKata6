@@ -30,5 +30,19 @@ class MainActivity : AppCompatActivity() {
         gameViewModel.getWinner().observe(this, Observer { player ->
             gameViewModel.populateWinner(player)
         })
+        gameViewModel.getIfNoWinner().observe(this, Observer{ message ->
+            showIfNoWinner(message)
+        })
+        gameViewModel.getPlayerName().observe(this, Observer{playerName ->
+            showWinnerName(playerName)
+        })
+    }
+
+    private fun showWinnerName(playerName: String){
+        Toast.makeText(this, "Winner is $playerName!", Toast.LENGTH_LONG).show()
+    }
+
+    private fun showIfNoWinner(message: String){
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 }
