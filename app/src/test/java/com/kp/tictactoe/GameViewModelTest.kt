@@ -15,6 +15,10 @@ class GameViewModelTest {
         cells = ObservableArrayMap()
     }
 
+    fun onClickedCellAt(row: Int, column: Int) {
+
+    }
+
     @Test
     fun `Given function should return player 1 name when init called from GameViewModel`(){
         init("Karthick","Pandiyan")
