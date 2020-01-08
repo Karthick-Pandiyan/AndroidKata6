@@ -120,7 +120,8 @@ class GameTest {
 
     fun hasThreeSameDiagonalCells(): Boolean {
         for (i in 0 until 3)
-            if (areEqual(cells[0][i], cells[1][i], cells[2][i]))
+            if (game.areEqual(game.cells[0][0], game.cells[1][1], game.cells[2][2])||
+                game.areEqual(game.cells[0][2], game.cells[1][1], game.cells[2][0]))
                 return true
         return false
     }
