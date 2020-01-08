@@ -8,6 +8,7 @@ import org.junit.Test
 class GameViewModelTest {
 
     val gameViewModel = GameViewModel()
+
     @Test
     fun `Given function should switch player to player 2 if the game is not ended`(){
         gameViewModel.init("Karthick","Pandiyan")
@@ -26,5 +27,12 @@ class GameViewModelTest {
         Assert.assertEquals("01", stringFromNumbers(0,1))
         Assert.assertEquals("02", stringFromNumbers(0,2))
         Assert.assertEquals("22", stringFromNumbers(2,2))
+    }
+
+    @Test
+    fun `Given function should return winning status when populateWinner called from GameViewModel`(){
+        gameViewModel.init("Karthick","Pandiyan")
+        gameViewModel.populateWinner(gameViewModel.game.player1)
+        Assert.assertNotNull(gameViewModel.noWinner)
     }
 }
