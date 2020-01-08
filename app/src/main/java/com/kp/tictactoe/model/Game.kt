@@ -21,6 +21,11 @@ class Game(playerOne: String, playerTwo: String){
     }
 
     fun hasGameEnded(): Boolean {
+        if(hasThreeSameHorizontalCells() || hasThreeSameVerticalCells() || hasThreeSameDiagonalCells()){
+            winner.value = currentPlayer
+            return true
+        }
+
         if(isBoardFull()) {
             winner.value = null
             return true
