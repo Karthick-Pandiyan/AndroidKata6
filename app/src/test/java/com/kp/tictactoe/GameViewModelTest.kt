@@ -1,6 +1,7 @@
 package com.kp.tictactoe
 
 import androidx.databinding.ObservableArrayMap
+import com.kp.tictactoe.model.Cell
 import com.kp.tictactoe.model.Game
 import org.junit.Assert
 import org.junit.Test
@@ -16,9 +17,19 @@ class GameViewModelTest {
     }
 
     fun onClickedCellAt(row: Int, column: Int) {
-        if (game.cells[row][column] == null) {
-
+        if (game.cells[row][column] == null || game.cells[row][column].isEmpty) {
+            game.cells[row][column] = Cell(game.currentPlayer)
+            cells[stringFromNumbers(row, column)] = game.currentPlayer.value
+            if (!game.hasGameEnded())
+                    game.switchPlayer()
         }
+    }
+
+    @Test
+    fun `Given function should switch player to player 2 if the game is not ended`(){
+        init("Karthick","Pandiyan")
+        onClickedCellAt(0,0)
+        Assert.assertEquals("Pandiyan", game.currentPlayer.name)
     }
 
     fun stringFromNumbers(vararg numbers: Int): String {
