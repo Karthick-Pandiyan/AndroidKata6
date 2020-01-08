@@ -1,8 +1,10 @@
 package com.kp.tictactoe
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import com.kp.tictactoe.databinding.ActivityMainBinding
 import com.kp.tictactoe.viewmodel.GameViewModel
 
@@ -21,5 +23,12 @@ class MainActivity : AppCompatActivity() {
         gameViewModel = GameViewModel()
         gameViewModel.init("Player1", "Player2")
         activityGameBinding.setGameViewModel(gameViewModel)
+        setUpOnGameEndListener()
+    }
+
+    private fun setUpOnGameEndListener() {
+        gameViewModel.getWinner().observe(this, Observer { player ->
+            gameViewModel.populateWinner(player)
+        })
     }
 }
