@@ -1,8 +1,10 @@
 package com.kp.tictactoe.viewmodel
 
 import androidx.databinding.ObservableArrayMap
+import androidx.lifecycle.LiveData
 import com.kp.tictactoe.model.Cell
 import com.kp.tictactoe.model.Game
+import com.kp.tictactoe.model.Player
 import com.kp.tictactoe.utilities.StringUtility.Companion.stringFromNumbers
 
 class GameViewModel {
@@ -23,5 +25,9 @@ class GameViewModel {
             if (!game.hasGameEnded())
                 game.switchPlayer()
         }
+    }
+
+    fun getWinner(): LiveData<Player> {
+        return game.winner
     }
 }
