@@ -8,7 +8,7 @@ import org.junit.Test
 class GameViewModelTest {
 
     lateinit var cells: ObservableArrayMap<String, String>
-    private var game: Game? = null
+    private lateinit var game: Game
 
     private fun init(player1: String, player2: String) {
         game = Game(player1, player2)
@@ -16,12 +16,14 @@ class GameViewModelTest {
     }
 
     fun onClickedCellAt(row: Int, column: Int) {
+        if (game.cells[row][column] == null) {
 
+        }
     }
 
     @Test
     fun `Given function should return player 1 name when init called from GameViewModel`(){
         init("Karthick","Pandiyan")
-        Assert.assertEquals("Karthick", game?.player1?.name)
+        Assert.assertEquals("Karthick", game.player1.name)
     }
 }
