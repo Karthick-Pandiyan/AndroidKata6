@@ -36,6 +36,13 @@ class Game(playerOne: String, playerTwo: String){
         return false
     }
 
+    fun hasThreeSameVerticalCells(): Boolean {
+        for (i in 0 until 3)
+            if (areEqual(cells[0][i], cells[1][i], cells[2][i]))
+                return true
+        return false
+    }
+
 
     fun isBoardFull(): Boolean {
         for (row in cells)

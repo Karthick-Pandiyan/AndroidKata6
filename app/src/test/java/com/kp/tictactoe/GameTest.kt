@@ -84,7 +84,7 @@ class GameTest {
         game.cells[0][0] = cell
         game.cells[1][0] = cell
         game.cells[2][0] = anotherCell
-        Assert.assertFalse(hasThreeSameVerticalCells())
+        Assert.assertFalse(game.hasThreeSameVerticalCells())
     }
 
 
@@ -95,7 +95,7 @@ class GameTest {
         game.cells[0][0] = cell
         game.cells[1][0] = cell
         game.cells[2][0] = cell
-        Assert.assertTrue(hasThreeSameVerticalCells())
+        Assert.assertTrue(game.hasThreeSameVerticalCells())
     }
 
     @Test
@@ -105,7 +105,7 @@ class GameTest {
         game.cells[0][1] = cell
         game.cells[1][1] = cell
         game.cells[2][1] = cell
-        Assert.assertTrue(hasThreeSameVerticalCells())
+        Assert.assertTrue(game.hasThreeSameVerticalCells())
     }
 
     @Test
@@ -115,15 +115,6 @@ class GameTest {
         game.cells[0][2] = cell
         game.cells[1][2] = cell
         game.cells[2][2] = cell
-        Assert.assertTrue(hasThreeSameVerticalCells())
+        Assert.assertTrue(game.hasThreeSameVerticalCells())
     }
-
-    fun hasThreeSameVerticalCells(): Boolean {
-        for (i in 0 until 3)
-            if (game.areEqual(game.cells[0][i], game.cells[1][i], game.cells[2][i]))
-                return true
-        return false
-    }
-
-
 }
