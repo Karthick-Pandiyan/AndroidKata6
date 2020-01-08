@@ -76,4 +76,13 @@ class GameTest {
         Assert.assertFalse(game.hasThreeSameHorizontalCells())
     }
 
+
+    fun hasThreeSameVerticalCells(): Boolean {
+        for (i in 0 until 3)
+            if (game.areEqual(game.cells[0][i], game.cells[1][i], game.cells[2][i]))
+                return true
+        return false
+    }
+
+
 }
