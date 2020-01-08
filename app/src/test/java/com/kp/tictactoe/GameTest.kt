@@ -177,4 +177,15 @@ class GameTest {
         game.cells[2][2] = cell
         Assert.assertTrue(game.hasGameEnded())
     }
+
+    @Test
+    @Throws(Exception::class)
+    fun `Given function should end the game and player 1 is the winner, if it has three same Diagonal cells`() {
+        val cell = Cell(game.player1)
+        game.cells[0][0] = cell
+        game.cells[1][1] = cell
+        game.cells[2][2] = cell
+        game.winner.value?.equals(game.player1)?.let { Assert.assertTrue(it) }
+    }
+
 }
