@@ -84,7 +84,7 @@ class GameTest {
         game.cells[0][0] = cell
         game.cells[1][0] = cell
         game.cells[2][0] = anotherCell
-        Assert.assertFalse(game.hasThreeSameHorizontalCells())
+        Assert.assertFalse(hasThreeSameVerticalCells())
     }
 
     fun hasThreeSameVerticalCells(): Boolean {
