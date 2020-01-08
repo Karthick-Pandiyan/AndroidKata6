@@ -66,11 +66,11 @@ class Game(playerOne: String, playerTwo: String){
 
     fun areEqual(vararg cells: Cell): Boolean {
 
-        if (cells == null || cells.size == 0)
+        if (cells.isEmpty())
             return false
 
         for (cell in cells)
-            if (cell == null || cell.player?.value.isNullOrEmpty())
+            if (cell.player?.value.isNullOrEmpty())
                 return false
 
         val comparisonBase = cells[0]
