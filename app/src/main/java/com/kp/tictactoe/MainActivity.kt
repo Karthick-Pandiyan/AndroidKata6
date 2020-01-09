@@ -7,8 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.kp.tictactoe.databinding.ActivityMainBinding
 import com.kp.tictactoe.viewmodel.GameViewModel
-
-import kotlinx.android.synthetic.main.activity_main.*
+import android.os.Handler
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +18,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        initDataBinding()
+    }
+
+    private fun initDataBinding() {
         activityGameBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         gameViewModel = GameViewModel()
         gameViewModel.init("Player1", "Player2")
@@ -36,13 +39,20 @@ class MainActivity : AppCompatActivity() {
         gameViewModel.getPlayerName().observe(this, Observer{playerName ->
             showWinnerName(playerName)
         })
+
+    }
+
+    private fun resetGame() {
+        Handler().postDelayed(Runnable { initDataBinding() }, 1000)
     }
 
     private fun showWinnerName(playerName: String){
         Toast.makeText(this, "Winner is $playerName!", Toast.LENGTH_LONG).show()
+        resetGame()
     }
 
     private fun showIfNoWinner(message: String){
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+        resetGame()
     }
 }
