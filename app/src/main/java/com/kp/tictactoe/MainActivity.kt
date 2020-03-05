@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
             gameViewModel.reset()
             activityGameBinding.setGameViewModel(gameViewModel)
             setUpOnGameEndListener()
-        }, 1000)
+        }, 500)
     }
 
     private fun showWinnerName(playerName: String){
