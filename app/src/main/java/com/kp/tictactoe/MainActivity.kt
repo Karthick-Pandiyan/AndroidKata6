@@ -8,22 +8,22 @@ import androidx.lifecycle.Observer
 import com.kp.tictactoe.databinding.ActivityMainBinding
 import com.kp.tictactoe.viewmodel.GameViewModel
 import android.os.Handler
+import androidx.lifecycle.ViewModelProvider
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var activityGameBinding: ActivityMainBinding
-    private lateinit var gameViewModel: GameViewModel
+    private val gameViewModel: GameViewModel by lazy { ViewModelProvider(this).get(GameViewModel::class.java) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        initDataBinding()
+        initGame()
     }
 
-    private fun initDataBinding() {
+    private fun initGame() {
         activityGameBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        gameViewModel = GameViewModel()
         gameViewModel.init("Player1", "Player2")
         activityGameBinding.setGameViewModel(gameViewModel)
         setUpOnGameEndListener()
@@ -43,7 +43,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun resetGame() {
-        Handler().postDelayed(Runnable { initDataBinding() }, 1000)
+        Handler().postDelayed(Runnable { initGame()
+        }, 1000)
     }
 
     private fun showWinnerName(playerName: String){

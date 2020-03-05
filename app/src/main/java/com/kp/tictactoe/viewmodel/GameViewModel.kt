@@ -3,12 +3,13 @@ package com.kp.tictactoe.viewmodel
 import androidx.databinding.ObservableArrayMap
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.kp.tictactoe.model.Cell
 import com.kp.tictactoe.model.Game
 import com.kp.tictactoe.model.Player
 import com.kp.tictactoe.utilities.StringUtility.Companion.stringFromNumbers
 
-class GameViewModel {
+class GameViewModel : ViewModel() {
 
     lateinit var cells: ObservableArrayMap<String, String>
     lateinit var game: Game
