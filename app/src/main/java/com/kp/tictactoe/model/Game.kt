@@ -1,38 +1,18 @@
 package com.kp.tictactoe.model
 
-import androidx.lifecycle.MutableLiveData
-
 class Game(playerOne: String, playerTwo: String){
 
-    var winner: MutableLiveData<Player> = MutableLiveData()
     private val BOARD_SIZE = 3
     val player1 =  Player(playerOne, "x")
     val player2 = Player(playerTwo, "o")
     var currentPlayer = player1
-    var cells = Array(BOARD_SIZE) {
-        Array(BOARD_SIZE) {
-            Cell(null)
-        }
-    }
+    var cells = Array(BOARD_SIZE) { Array(BOARD_SIZE) { Cell(null) } }
 
     fun switchPlayer() {
         currentPlayer = if (currentPlayer === player1) player2 else player1
     }
 
-    fun hasGameEnded(): Boolean {
-        if(hasThreeSameHorizontalCells() || hasThreeSameVerticalCells() || hasThreeSameDiagonalCells()){
-            winner.postValue(currentPlayer)
-            return true
-        }
-
-        if(isBoardFull()) {
-            currentPlayer.name = ""
-            winner.postValue(currentPlayer)
-            return true
-        }
-        return false
-    }
-
+    fun isWinnerAvailable(): Boolean = hasThreeSameHorizontalCells() || hasThreeSameVerticalCells() || hasThreeSameDiagonalCells()
 
     fun hasThreeSameHorizontalCells(): Boolean {
         for (i in 0 until BOARD_SIZE)
@@ -50,8 +30,7 @@ class Game(playerOne: String, playerTwo: String){
 
     fun hasThreeSameDiagonalCells(): Boolean {
         for (i in 0 until 3)
-            if (areEqual(cells[0][0], cells[1][1], cells[2][2])||
-                areEqual(cells[0][2], cells[1][1], cells[2][0]))
+            if (areEqual(cells[0][0], cells[1][1], cells[2][2])|| areEqual(cells[0][2], cells[1][1], cells[2][0]))
                 return true
         return false
     }
@@ -59,25 +38,17 @@ class Game(playerOne: String, playerTwo: String){
     fun isBoardFull(): Boolean {
         for (row in cells)
             for (cell in row)
-                if (cell.isEmpty)
-                    return false
+                if (cell.isEmpty) return false
         return true
     }
 
     fun areEqual(vararg cells: Cell): Boolean {
-
-        if (cells.isEmpty())
-            return false
-
+        if (cells.isEmpty()) return false
         for (cell in cells)
-            if (cell.player?.value.isNullOrEmpty())
-                return false
-
+            if (cell.player?.value.isNullOrEmpty()) return false
         val comparisonBase = cells[0]
         for (i in 1 until cells.size)
-            if (!comparisonBase.player?.value.equals(cells[i].player?.value))
-                return false
-
+            if (!comparisonBase.player?.value.equals(cells[i].player?.value)) return false
         return true
     }
 }

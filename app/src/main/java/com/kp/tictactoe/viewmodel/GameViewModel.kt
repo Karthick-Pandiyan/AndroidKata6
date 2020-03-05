@@ -6,47 +6,51 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.kp.tictactoe.model.Cell
 import com.kp.tictactoe.model.Game
-import com.kp.tictactoe.model.Player
 import com.kp.tictactoe.utilities.StringUtility.Companion.stringFromNumbers
 
 class GameViewModel : ViewModel() {
 
     lateinit var cells: ObservableArrayMap<String, String>
     lateinit var game: Game
-    var winnerName = MutableLiveData<String>()
+    lateinit var player1: String
+    lateinit var player2: String
+    var winner = MutableLiveData<String>()
     var noWinner = MutableLiveData<String>()
 
     fun init(player1: String, player2: String) {
+        this.player1 = player1
+        this.player2 = player2
         game = Game(player1, player2)
         cells = ObservableArrayMap()
     }
+
+    fun getWinner(): LiveData<String> = winner
+
+    fun getNoWinner(): LiveData<String> = noWinner
 
     fun onClickedCellAt(row: Int, column: Int) {
         if (game.cells[row][column].isEmpty) {
             game.cells[row][column] = Cell(game.currentPlayer)
             cells[stringFromNumbers(row, column)] = game.currentPlayer.value
-            if (!game.hasGameEnded())
-                game.switchPlayer()
+            if (!hasGameEnded()) game.switchPlayer()
         }
     }
 
-    fun getWinner(): LiveData<Player> {
-        return game.winner
-    }
-
-    fun populateWinner(player: Player){
-        if (getWinner().value == null ||
-            getWinner().value?.name.isNullOrEmpty()) {
+    fun hasGameEnded(): Boolean {
+        if(game.isWinnerAvailable()){
+            winner.postValue(game.currentPlayer.name)
+            return true
+        }
+        if(game.isBoardFull()) {
             noWinner.postValue("No Winner!")
-        } else {
-            winnerName.postValue( player.name)
+            return true
         }
+        return false
     }
 
-    fun getPlayerName(): MutableLiveData<String> {
-        return winnerName
-    }
-    fun getIfNoWinner(): MutableLiveData<String> {
-        return noWinner
+    fun reset(){
+        init(player1, player2)
+        winner = MutableLiveData()
+        noWinner = MutableLiveData()
     }
 }

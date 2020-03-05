@@ -18,32 +18,30 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
         initGame()
     }
 
     private fun initGame() {
         activityGameBinding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         gameViewModel.init("Player1", "Player2")
-        activityGameBinding.setGameViewModel(gameViewModel)
+        activityGameBinding.gameViewModel = gameViewModel
         setUpOnGameEndListener()
     }
 
     private fun setUpOnGameEndListener() {
-        gameViewModel.getWinner().observe(this, Observer { player ->
-            gameViewModel.populateWinner(player)
-        })
-        gameViewModel.getIfNoWinner().observe(this, Observer{ message ->
-            showIfNoWinner(message)
-        })
-        gameViewModel.getPlayerName().observe(this, Observer{playerName ->
+        gameViewModel.getWinner().observe(this, Observer { playerName ->
             showWinnerName(playerName)
         })
-
+        gameViewModel.getNoWinner().observe(this, Observer{ message ->
+            showIfNoWinner(message)
+        })
     }
 
     private fun resetGame() {
-        Handler().postDelayed(Runnable { initGame()
+        Handler().postDelayed(Runnable {
+            gameViewModel.reset()
+            activityGameBinding.setGameViewModel(gameViewModel)
+            setUpOnGameEndListener()
         }, 1000)
     }
 
